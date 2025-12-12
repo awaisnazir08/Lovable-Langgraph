@@ -18,4 +18,4 @@ class ImplementationTask(BaseModel):
 
 class TaskPlan(BaseModel):
     implementation_steps: list[ImplementationTask] = Field(description="A list of steps to be taken to implement the task")
-    model_config = ConfigDict(extra="allow")
+    model_config = ConfigDict(extra="allow")  # so we can add any extra fields if needed in the object of this class (Pydantic will allow this, otherwise it will raise an error)
