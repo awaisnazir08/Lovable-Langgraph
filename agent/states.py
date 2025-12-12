@@ -19,3 +19,8 @@ class ImplementationTask(BaseModel):
 class TaskPlan(BaseModel):
     implementation_steps: list[ImplementationTask] = Field(description="A list of steps to be taken to implement the task")
     model_config = ConfigDict(extra="allow")  # so we can add any extra fields if needed in the object of this class (Pydantic will allow this, otherwise it will raise an error)
+
+class CoderState(BaseModel):
+    task_plan: TaskPlan = Field(description="The plan for the task to be implemented")
+    current_step_idx: int = Field(0, description="The index of the current step in the implementation steps")
+    current_file_content: Optional[str] = Field(None, description="The content of the file currently being edited or created")
